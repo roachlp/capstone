@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Security Risk Assessment</title>
+    <link rel="stylesheet" type="text/css" href="capstonestyle.css">
+    <script>
+        function openTab(tabName) {
+            var i;
+            var tabs = document.getElementsByClassName("tab");
+            for (i = 0; i < tabs.length; i++) {
+                tabs[i].style.display = "none";
+            }
+            document.getElementById(tabName).style.display = "block";
+        }
+
+        function calculateRisk() {
+            let totalRiskScore = 0;
+
+            // Define the risk scores for each question
+            const riskScores = {
+                'yes': 0, // Low risk
+                'no': 1,  // Medium risk
+            };
+
+            
+            for (let i = 1; i <= 15; i++) {
+                const answer = document.querySelector(`input[name=q${i}]:checked`).value;
+                totalRiskScore += riskScores[answer];
+            }
+
+            // Display the total risk score 
+            alert(`Your Total Risk Score: ${totalRiskScore}`);
+
+// MITIGATION STRATEGY
+
+        displayMitigationStrategies(totalRiskScore);
+        }
+function displayMitigationStrategies(totalRiskScore) {
+        const mitigationStrategiesContainer = document.getElementById('mitigation-strategies');
+
+        // Clear previous recommendations
+        mitigationStrategiesContainer.innerHTML = '';
+
+        // Display recommendations based on different ranges of risk scores
+        if (totalRiskScore >= 0 && totalRiskScore <= 5) {
+            // Low risk recommendations
+            mitigationStrategiesContainer.innerHTML = '<p>Low risk! Here are some recommended strategies:</p>' +
+                '<ul>' +
+                '<li>Continue regular security awareness training for employees.</li>' +
+                '<li>Conduct periodic security audits to maintain the current security posture.</li>' +
+                '</ul>';
+        } else if (totalRiskScore > 5 && totalRiskScore <= 10) {
+            // Medium risk recommendations
+            mitigationStrategiesContainer.innerHTML = '<p>Medium risk! Consider implementing the following strategies:</p>' +
+                '<ul>' +
+                '<li>Strengthen password policies and enforce multi-factor authentication.</li>' +
+                '<li>Enhance network monitoring and incident response capabilities.</li>' +
+                '</ul>';
+        } else {
+            // High risk recommendations
+            mitigationStrategiesContainer.innerHTML = '<p>High risk! Urgently address the following areas:</p>' +
+                '<ul>' +
+                '<li>Implement comprehensive cybersecurity training programs.</li>' +
+                '<li>Enhance access controls and regularly review user access permissions.</li>' +
+                '</ul>';
+        }
+
+        // Scroll to the mitigation strategies section
+        openTab('tab3');
+	}
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Security Risk Assessment</h1>
+    </header>
+    <div class="container">
+        <h2>Welcome to the Security Risk Assessment Tool</h2>
+        <p>This tool will guide you through the process of assessing security risks and making informed decisions to protect your organization's assets and data.</p>
+        <p>Select a tab below to explore different aspects of the assessment.</p>
+        <ul>
+            <li><button onclick="openTab('tab1')">Introduction</button></li>
+            <li><button onclick="openTab('tab2')">Risk Assessment</button></li>
+            <li><button onclick="openTab('tab3')">Risk Mitigation</button></li>
+            <!-- Add more tabs as needed -->
+        </ul>
+
+        <!-- Tab 1: Introduction -->
+        <div id="tab1" class="tab">
+            <h2>Introduction and Background</h2>
+            <div class="tab-content">
+                <p>Welcome to the Introduction section. This tab provides background information about security assessments.</p>
+                <p>In today's digital landscape, where technology plays a crucial role in businesses, the need for robust security measures has never been more critical. Security assessments are systematic evaluations designed to identify and mitigate potential risks to an organization's information systems, data, and assets.</p>
+        <p>Key aspects of security assessments include:</p>
+        <ul>
+            <li><strong>Identification of Vulnerabilities:</strong> Assessments help identify vulnerabilities and weaknesses in the security infrastructure.</li>
+            <li><strong>Risk Evaluation:</strong> They evaluate the potential impact of identified risks on the organization.</li>
+            <li><strong>Compliance:</strong> Security assessments often ensure compliance with industry standards and regulations.</li>
+            <li><strong>Continuous Improvement:</strong> Regular assessments contribute to an organization's continuous improvement in security posture.</li>
+        </ul>
+                <div class="highlight">
+                    <p><strong>Tip:</strong> Understanding the importance of security assessments is key to a successful risk mitigation strategy.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 2: Risk Assessment -->
+        <div id="tab2" class="tab">
+            <h2>Risk Assessment Questions and Calculator</h2>
+            <div class="tab-content">
+                <p>Answer the following questions to assess security risks:</p>
+                <ol>
+                    <li>
+                        <strong>Question 1:</strong> Do you regularly update and patch your software and systems to protect against known vulnerabilities?
+                <br>
+                <label for="q1-yes">Yes</label>
+                <input type="radio" name="q1" id="q1-yes" value="yes">
+                <label for="q1-no">No</label>
+                <input type="radio" name="q1" id="q1-no" value="no">
+            </li>
+            <li>
+                <strong>Question 2:</strong> Is multi-factor authentication implemented for sensitive accounts and systems?
+                <br>
+                <label for="q2-yes">Yes</label>
+                <input type="radio" name="q2" id="q2-yes" value="yes">
+                <label for="q2-no">No</label>
+                <input type="radio" name="q2" id="q2-no" value="no">
+            </li>
+            <li>
+                <strong>Question 3:</strong> Are security policies and procedures documented and regularly reviewed?
+                <br>
+                <label for="q3-yes">Yes</label>
+                <input type="radio" name="q3" id="q3-yes" value="yes">
+                <label for="q3-no">No</label>
+                <input type="radio" name="q3" id="q3-no" value="no">
+            </li>
+            <li>
+                <strong>Question 4:</strong> Are employees provided with cybersecurity training and awareness programs?
+                <br>
+                <label for="q4-yes">Yes</label>
+                <input type="radio" name="q4" id="q4-yes" value="yes">
+                <label for="q4-no">No</label>
+                <input type="radio" name="q4" id="q4-no" value="no">
+            </li>
+            <li>
+                <strong>Question 5:</strong> Are regular security audits conducted on your network infrastructure?
+                <br>
+                <label for="q5-yes">Yes</label>
+                <input type="radio" name="q5" id="q5-yes" value="yes">
+                <label for="q5-no">No</label>
+                <input type="radio" name="q5" id="q5-no" value="no">
+            </li>
+            <li>
+                <strong>Question 6:</strong> Is data encryption used for sensitive information in transit and at rest?
+                <br>
+                <label for="q6-yes">Yes</label>
+                <input type="radio" name="q6" id="q6-yes" value="yes">
+                <label for="q6-no">No</label>
+                <input type="radio" name="q6" id="q6-no" value="no">
+            </li>
+            <li>
+                <strong>Question 7:</strong> Do you have an incident response plan in place in case of a security breach?
+                <br>
+                <label for="q7-yes">Yes</label>
+                <input type="radio" name="q7" id="q7-yes" value="yes">
+                <label for="q7-no">No</label>
+                <input type="radio" name="q7" id="q7-no" value="no">
+            </li>
+            <li>
+                <strong>Question 8:</strong> Is physical access to sensitive areas restricted and monitored?
+                <br>
+                <label for="q8-yes">Yes</label>
+                <input type="radio" name="q8" id="q8-yes" value="yes">
+                <label for="q8-no">No</label>
+                <input type="radio" name="q8" id="q8-no" value="no">
+            </li>
+            <li>
+                <strong>Question 9:</strong> Are third-party vendors and their security practices assessed before engagement?
+                <br>
+                <label for="q9-yes">Yes</label>
+                <input type="radio" name="q9" id="q9-yes" value="yes">
+                <label for="q9-no">No</label>
+                <input type="radio" name="q9" id="q9-no" value="no">
+            </li>
+            <li>
+                <strong>Question 10:</strong> Is user access reviewed and updated regularly based on job roles and responsibilities?
+                <br>
+                <label for="q10-yes">Yes</label>
+                <input type="radio" name="q10" id="q10-yes" value="yes">
+                <label for="q10-no">No</label>
+                <input type="radio" name="q10" id="q10-no" value="no">
+            </li>
+            <li>
+                <strong>Question 11:</strong> Do you conduct regular vulnerability assessments on your systems and applications?
+                <br>
+                <label for="q11-yes">Yes</label>
+                <input type="radio" name="q11" id="q11-yes" value="yes">
+                <label for="q11-no">No</label>
+                <input type="radio" name="q11" id="q11-no" value="no">
+            </li>
+            <li>
+                <strong>Question 12:</strong> Is there a secure backup and recovery process in place for critical data?
+                <br>
+                <label for="q12-yes">Yes</label>
+                <input type="radio" name="q12" id="q12-yes" value="yes">
+                <label for="q12-no">No</label>
+                <input type="radio" name="q12" id="q12-no" value="no">
+            </li>
+            <li>
+                <strong>Question 13:</strong> Are security incidents and responses documented for analysis and improvement?
+                <br>
+                <label for="q13-yes">Yes</label>
+                <input type="radio" name="q13" id="q13-yes" value="yes">
+                <label for="q13-no">No</label>
+                <input type="radio" name="q13" id="q13-no" value="no">
+            </li>
+            <li>
+                <strong>Question 14:</strong> Is there a secure process for employee onboarding and offboarding?
+                <br>
+                <label for="q14-yes">Yes</label>
+                <input type="radio" name="q14" id="q14-yes" value="yes">
+                <label for="q14-no">No</label>
+                <input type="radio" name="q14" id="q14-no" value="no">
+            </li>
+            <li>
+                <strong>Question 15:</strong> Do you regularly review and update security policies and procedures?
+                <br>
+                <label for="q15-yes">Yes</label>
+                <input type="radio" name="q15" id="q15-yes" value="yes">
+                <label for="q15-no">No</label>
+                <input type="radio" name="q15" id="q15-no" value="no">
+            </li>
+          </ol>
+                <div class="highlight">
+                    <p><strong>Tip:</strong> Provide honest answers to these questions to get an accurate assessment of your security posture.</p>
+                </div>
+                <button onclick="calculateRisk()">Calculate Risk</button>
+            </div>
+        </div>
+
+        <!-- Tab 3: Risk Mitigation Strategies -->
+        <div id="tab3" class="tab">
+            <h2>Risk Mitigation Strategies</h2>
+            <div class="tab-content">
+                <p>Welcome to the Risk Mitigation Strategies section. This tab provides information about strategies to mitigate identified security risks.</p>
+                <p>Discuss various approaches and best practices for risk mitigation.</p>
+                <div class="highlight">
+                    <p><strong>Tip:</strong> Implementing effective risk mitigation strategies is crucial for maintaining a secure environment.</p>
+                </div>
+<div id="mitigation-strategies"></div>
+            </div>
+        </div>
+
+        
+    </div>
+</body>
+</html>
